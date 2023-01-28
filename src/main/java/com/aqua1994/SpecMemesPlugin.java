@@ -9,8 +9,10 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import okhttp3.OkHttpClient;
 
 import javax.inject.Inject;
+import java.util.concurrent.ScheduledExecutorService;
 
 @Slf4j
 @PluginDescriptor(
@@ -23,15 +25,16 @@ public class SpecMemesPlugin extends Plugin {
     private SoundEngine soundEngine;
     @Inject
     private Client client;
-
+    @Inject
+    private ScheduledExecutorService executor;
+    @Inject
+    private OkHttpClient okHttpClient;
     @Override
     protected void startUp() throws Exception {
-        log.info("SpecMemes started!");
-    }
-
-    @Override
-    protected void shutDown() throws Exception {
-        log.info("SpecMemes stopped!");
+            executor.submit(() -> {
+                SoundFileManager.ensureDownloadDirectoryExists();
+                SoundFileManager.downloadAllMissingSounds(okHttpClient);
+            });
     }
 
     @Subscribe

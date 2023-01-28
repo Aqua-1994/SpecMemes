@@ -22,7 +22,7 @@ public abstract class SoundFileManager {
     private static final File DOWNLOAD_DIR = new File(RuneLite.RUNELITE_DIR.getPath() + File.separator + "specmemes-sounds");
     private static final String DELETE_WARNING_FILENAME = "EXTRA_FILES_WILL_BE_DELETED_BUT_FOLDERS_WILL_REMAIN";
     private static final File DELETE_WARNING_FILE = new File(DOWNLOAD_DIR, DELETE_WARNING_FILENAME);
-    private static final HttpUrl RAW_GITHUB = HttpUrl.parse("https://raw.githubusercontent.com/Aqua-1994/specmemes/blob/sounds");
+    private static final HttpUrl RAW_GITHUB = HttpUrl.parse("https://raw.githubusercontent.com/Aqua-1994/SpecMemes/sounds");
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void ensureDownloadDirectoryExists() {
