@@ -18,6 +18,8 @@ import javax.inject.Inject;
 )
 public class SpecMemesPlugin extends Plugin {
     @Inject
+    private SpecMemesPluginConfig config;
+    @Inject
     private SoundEngine soundEngine;
     @Inject
     private Client client;
@@ -53,7 +55,9 @@ public class SpecMemesPlugin extends Plugin {
                 break;
         }
         if (sound != null) {
-            client.addChatMessage(ChatMessageType.PUBLICCHAT, "Debug message", "Tried to play: " + sound.getResourceName(), "Debug message");
+            if(config.debug()) {
+                client.addChatMessage(ChatMessageType.PUBLICCHAT, "Debug message", "Tried to play: " + sound.getResourceName(), "Debug message");
+            }
             soundEngine.playClip(sound);
         }
     }

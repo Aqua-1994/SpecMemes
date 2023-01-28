@@ -7,6 +7,17 @@ import net.runelite.client.config.Range;
 
 @ConfigGroup("specmemes")
 public interface SpecMemesPluginConfig extends Config {
+
+    @ConfigItem(
+            keyName = "debug",
+            name = "debug",
+            description = "shows some debug messages"
+    )
+    default boolean debug()
+    {
+        return false;
+    }
+
     @Range(
             min = 0,
             max = 200
